@@ -1,0 +1,11 @@
+<h1>Hello <%= current_user.email %></h1>
+<%= link_to "New Room", new_room_path %>
+
+<ul>
+  <% rooms.each do |room| %>
+    <li>
+      <%= room.name %>
+      <%= button_to "Join", room_joins_path(room.id) %> 
+    </li>
+  <% end %>
+</ul>
