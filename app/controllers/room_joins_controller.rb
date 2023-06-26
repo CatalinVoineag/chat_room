@@ -2,9 +2,8 @@ class RoomJoinsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    # this adds another user along side the one that exists
-    if room.users << current_user
-      redirect_to root_path
+    if room.join(user: current_user)
+      redirect_to room_path(room)
     else
       # show error
       raise "error"

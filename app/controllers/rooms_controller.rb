@@ -19,7 +19,18 @@ class RoomsController < ApplicationController
     end
   end
 
+  def show
+    render locals: {
+      room: room,
+      room_comment: room.comments.new
+    }
+  end
+
   private
+
+  def room
+    Room.find(params.require(:id))
+  end
 
   def room_params
     params.require(:room).permit(
