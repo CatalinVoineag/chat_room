@@ -1,0 +1,3 @@
+<%= turbo_stream.update "comments" do %>
+  <%= render partial: "room_comments/comments", locals: { room: room } %>
+<% end %>

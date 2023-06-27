@@ -1,0 +1,9 @@
+<div id="comments">
+  <h2>Comments</h2>
+
+  <ul id="comments">
+    <% room.comments.each do |comment| %>
+      <li><%= comment.user.email %> said: <%= comment.body %></li> 
+    <% end %>
+  </ul>
+</div>

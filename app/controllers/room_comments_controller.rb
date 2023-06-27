@@ -3,7 +3,14 @@ class RoomCommentsController < ApplicationController
     comment = Comment.new(comment_params)
 
     if comment.save
-      room_path(Room.find(room_id))
+      respond_to do |format|
+        format.turbo_stream {
+          render locals: { room: Room.find(room_id) }
+        }
+        format.html {
+          redirect_to root_path
+        }
+      end
     else
       raise "error"
     end
