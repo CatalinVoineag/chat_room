@@ -3,12 +3,14 @@ class RoomCommentsController < ApplicationController
     comment = Comment.new(comment_params)
 
     if comment.save
+      room = Room.find(room_id)
+
       respond_to do |format|
         format.turbo_stream {
-          render locals: { room: Room.find(room_id) }
+          render locals: { room: room }
         }
         format.html {
-          redirect_to root_path
+          redirect_to room_path(room)
         }
       end
     else
